@@ -21,7 +21,7 @@ Create a confident, premium industrial operations interface: precise, legible, c
 - Typography: Jakarta Sans or equivalent legible sans-serif; define clear type scale and tabular numeric styles.
 - Palette: neutral graphite/stone foundations with restrained blue/teal primary accent; amber warning, red critical, green verified/complete. Never rely on color alone.
 - Surfaces: clean panels, subtle borders and restrained shadows. Avoid heavy glassmorphism if it harms contrast/performance.
-- Charts only when they support decisions; label units, period, provenance and drill-down.
+- Charts only when they support decisions; label units, period, provenance and drill-down. The interface must work consistently across all karoseri types, with product-specific fields and sections rendered from approved configuration rather than a single body-type-specific screen set.
 
 ## 4. Responsive behavior
 - Mobile: capture/review/approval/status update; compact top bar, project switcher, touch-friendly forms and sticky contextual actions.
@@ -48,10 +48,18 @@ Lifecycle: Draft, Active, On Hold, At Risk, Completed, Cancelled. Review: Upload
 Use subtle functional transitions for navigation, panel expansion, processing progress and state changes. Respect reduced-motion preferences. Never delay data entry or obscure state with animation.
 
 ## 10. Accessibility and content
-Target WCAG AA contrast. Visible keyboard focus, explicit labels/errors. Indonesian default UI; structure for localization. Explain abbreviations contextually.
+Target WCAG AA contrast. Visible keyboard focus, explicit labels/errors. Indonesian default UI; structure for localization. Explain abbreviations contextually. Dynamic fields must preserve accessible labels, units, required/error states, and keyboard order.
 
 ## 11. Screen inventory
-Auth/organization setup; dashboard; customers; project list/detail; project files/knowledge; document compare/review; contract/obligation register; spec editor/version compare; BOM/material availability; schedule/production; procurement; compliance library/register; unit dossier; QC/nonconformity; report composer; invoice/receivables; delivery/warranty; users/roles/settings.
+Auth/organization setup; dashboard; customers; project list/detail; project files/knowledge; document compare/review; contract/obligation register; spec editor/version compare; BOM/material availability; schedule/production; procurement; compliance library/register; unit dossier; QC/nonconformity; report composer; invoice/receivables; delivery/warranty; users/roles/settings; product-type catalogue and template management; project/unit product configuration and template selection.
 
-## 12. UX acceptance checks
+## 12. Universal product-type interaction patterns
+- Use one shared project lifecycle and navigation for every body type; never fork the application into a type-specific product.
+- Render product-specific forms from versioned field definitions, including labels, units, validation, required fields, and conditional sections. Preserve a predictable layout and clear provenance.
+- Make product type visible in project/unit headers, portfolio rows, filters, and reports; mixed-type projects must remain understandable.
+- Offer a clear generic/custom path when a type or ready-made template is missing. Do not show a dead end, disabled workflow, or message implying that the type is unsupported.
+- Template selection displays its name/version and the effect of adopting it. Existing approved project snapshots remain stable unless the user performs an authorized revision.
+- Design reusable views for specification, BOM, routing, inspection and compliance templates; avoid hard-coded assumptions about dimensions, components, operations, or number of checklist items.
+
+## 13. UX acceptance checks
 A supervisor records progress/photo on mobile; engineer compares drawing revisions and approves facts with source; manager explains blockers/forecast; finance sees due/received amounts; report approver detects confidential data; customer viewer cannot access internal records.
