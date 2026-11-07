@@ -30,7 +30,7 @@ Karolens supports all karoseri types from launch. Implementation may sequence te
 - App shell, auth, organization setup, invitations and membership/role model.
 - Supabase migrations for tenant foundation; RLS/storage policies tested.
 - Audit events, error handling, structured logging, environment config.
-**Exit:** tenant isolation and authenticated workspace verified automatically.
+**Exit:** tenant isolation and authenticated workspace verified automatically; any karoseri type can be represented through the catalogue or custom profile, and approved template versions are tenant-scoped and versioned.
 
 ## Phase 2 — Project and document workspace
 - Customer/project/unit CRUD across all product types.
@@ -39,7 +39,7 @@ Karolens supports all karoseri types from launch. Implementation may sequence te
 - Upload validation, metadata, annotations and document links.
 - Background processing job model; begin with provider-agnostic/manual extraction.
 - Candidate fact extraction and human verification/approval with source traceability.
-**Exit:** users upload supported files, review extracted facts and approve baseline while preserving source/version lineage.
+**Exit:** users create projects for any product type, assign project/unit profiles (including mixed types), upload supported files, review extracted facts and approve baselines while preserving source/template version lineage.
 
 ## Phase 3 — Contract and engineering baseline
 - Contract versions and clause register.
@@ -49,21 +49,21 @@ Karolens supports all karoseri types from launch. Implementation may sequence te
 - Specification revision, baseline and change request.
 - BOM revision tied to approved specification.
 - Impact comparison for changes.
-**Exit:** changes leave traceable audit records; AI cannot approve.
+**Exit:** changes leave traceable audit records; specifications and BOMs can be driven by product-specific templates or custom configuration; AI cannot approve.
 
 ## Phase 4 — Materials, procurement and production
 - Material catalog, stock visibility, reservation and shortage calculation.
 - Configurable production-route/operation templates by product type; retain a shared scheduling, progress and blocker engine.
 - Purchase request and receipt workflow.
 - Operations, dependencies, capacity calendar, progress logs, blockers and delivery forecast.
-**Exit:** project owner can explain forecast from recorded blockers/events.
+**Exit:** project owner can explain forecast from recorded blockers/events; production operations can be instantiated from different product-type routes without a separate lifecycle implementation.
 
 ## Phase 5 — Compliance, quality and release
 - Versioned requirement sources and applicability profiles.
 - Bind QC, inspection, compliance and release templates to the project/unit product profile; allow justified manual/custom evidence capture.
 - Project/unit compliance register, evidence and external-process tracking.
 - Inspection templates/results, nonconformity/rework and release approval.
-**Exit:** release readiness derives from applicable evidence and authorized approvals; no false claim of government approval.
+**Exit:** release readiness derives from product-type/OEM/customer-applicable evidence and authorized approvals across all body types; no false claim of government approval.
 
 ## Phase 6 — Customer reporting and finance
 - Customer report assembly, redaction and approval.
