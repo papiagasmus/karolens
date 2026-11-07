@@ -5,6 +5,9 @@
 - Version: 1.0-draft
 - Date: 2026-11-07
 
+## Product scope alignment
+The experience must support all karoseri types from launch through one shared application and lifecycle. Product-specific UI is configuration-driven; no body type may be treated as unsupported because a prebuilt template is missing.
+
 ## 1. Design intent
 Create a confident, premium industrial operations interface: precise, legible, calm under pressure, and optimized for decisions on desktop and mobile. Avoid a generic admin-dashboard appearance and excessive decoration.
 
