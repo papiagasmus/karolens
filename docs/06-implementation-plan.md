@@ -7,7 +7,7 @@
 - Coding gate: **not approved until all six documents are reviewed and baseline decisions are closed**.
 
 ## Product scope invariant
-All karoseri types are supported from launch. Implementation may sequence template depth and pilot acquisition, but may not defer support for a product type. A generic/custom profile must let any type use the shared project lifecycle even when a dedicated template is not yet available.
+Karolens supports all karoseri types from launch. Implementation may sequence template depth and pilot acquisition, but may not defer support for a product type. A generic/custom profile must let any type use the shared project lifecycle even when a dedicated template is not yet available.
 
 ## Phase 0 — Specification approval and readiness
 - Review six documents together; map requirements across flows, UI, schema and tests.
