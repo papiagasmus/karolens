@@ -54,9 +54,9 @@ The existing `projects.body_category` may remain as a human-readable compatibili
 - `customer_approvals`: object/version, requested decision, approver, decision, timestamp, evidence.
 
 ## 7. Engineering/material planning
-- `specification_revisions`: project/unit configuration, version, status, source docs, approved_by/at.
+- `specification_revisions`: project/unit configuration, `project_product_profile_id`, optional specification `project_template_assignment_id`, version, status, source docs, approved_by/at. The approved revision retains the exact product-profile/template snapshot used.
 - `specification_items`: revision, key, value, unit, tolerance, source fact, criticality.
-- `bom_revisions`: project/unit/spec revision, version, status, approver.
+- `bom_revisions`: project/unit/spec revision, `project_product_profile_id`, optional BOM `project_template_assignment_id`, version, status, approver. The revision retains the source template version and any approved manual overrides.
 - `bom_items`: BOM revision, material, quantity, unit, waste factor and operation note.
 - `materials`: organization catalog, code, description, unit, category, supplier preference, active.
 - `inventory_locations`: warehouse/site.
@@ -67,18 +67,18 @@ The existing `projects.body_category` may remain as a human-readable compatibili
 - `goods_receipts` / `goods_receipt_items`: received quantity, inspection and lot link.
 
 ## 8. Schedule and production
-- `production_operations`: project/unit, operation, sequence, dependency, work center/resource, planned/actual dates, status/progress/hours.
+- `production_operations`: project/unit, operation, sequence, dependency, work center/resource, optional production-route `project_template_assignment_id`, planned/actual dates, status/progress/hours. Instantiated operations retain the template source while allowing authorized project-specific changes.
 - `production_logs`: operation, actor, time, quantity/progress, notes and photos/doc links.
 - `production_blockers`: project/operation, category, severity, owner, open/resolve times and impact estimate.
 - `capacity_calendars`: work center/resource, date and available capacity.
 
 ## 9. Regulatory and quality
 - `requirement_sources`: issuer, source type (regulation/OEM/contract/SOP), citation, version, publication/effective/expiry dates and review date.
-- `requirement_templates`: source, title, versioned applicability logic, vehicle/company scope and mandatory flag.
+- `requirement_templates`: source, title, optional `product_template_version_id`, versioned applicability logic, vehicle/company/product-type scope and mandatory flag. Applicability remains reviewable and can differ by OEM, customer, location and project.
 - `project_requirements`: project/unit, template/source, applicability status/rationale, owner, due date and workflow status.
 - `requirement_evidence`: requirement, document/version, evidence type, verifier/time and external reference/status.
 - `compliance_submissions`: external process, application/reference number, submitted date, status, fee metadata, due date and outcome evidence.
-- `inspection_templates` / `inspection_items`: template type/version, applicability, criteria, limits/units and criticality.
+- `inspection_templates` / `inspection_items`: product type and optional `product_template_version_id`, template type/version, applicability, criteria, limits/units and criticality. Inspections retain the exact template version used at execution.
 - `inspections`: project/unit, template, inspector, start/finish and result.
 - `inspection_results`: inspection/item, result, measured value, notes and evidence.
 - `nonconformities`: inspection/project/operation, severity, disposition, corrective action and closure.
@@ -105,7 +105,7 @@ The existing `projects.body_category` may remain as a human-readable compatibili
 - `customer_portal_users` / `document_shares`: later phase; explicit scoped permissions, expiry/revocation.
 
 ## 12. Relationships
-Organization 1:N customers/projects/members/materials. Customer 1:N projects. Project 1:N units/documents/contracts/milestones/operations/requirements/invoices/reports. Document 1:N versions; version 1:N extractions/facts. Contract 1:N versions; version 1:N clauses; clause 1:N obligations. Specification revision 1:N items/BOM revisions; BOM revision 1:N items. Unit 1:N inspections/release/delivery/warranty.
+Organization 1:N customers/projects/members/materials and tenant-defined product types/templates. Customer 1:N projects. Project 1:N units/documents/contracts/milestones/operations/requirements/invoices/reports and product profiles. Product profile 1:N template assignments; template 1:N immutable versions. Project product profiles may be project- or unit-scoped and can represent mixed product types within one project. Specification revisions, BOM revisions, production operations, requirement/inspection records and release dossiers retain their source product profile or template assignment/version. Document 1:N versions; version 1:N extractions/facts. Contract 1:N versions; version 1:N clauses; clause 1:N obligations. Specification revision 1:N items/BOM revisions; BOM revision 1:N items. Unit 1:N inspections/release/delivery/warranty.
 
 ## 13. RLS and indexes
 Enable RLS on every exposed tenant table. Policies validate authenticated user membership in matching organization and role/action permission. Validate parent/child tenant consistency on writes. Private storage policies mirror tenant/project permissions. Platform catalogue/template rows (`organization_id IS NULL`) are read-only to tenant users; tenant-defined types/templates are visible only to their owning organization. Policies must not let a tenant alter global rows or read another tenant's custom definitions. Index organization + common filter/sort columns, project/customer/unit IDs, status, due dates, version IDs, checksum and foreign keys. Composite uniqueness: project code per organization, version number per document, invoice number per organization, material code per organization.
