@@ -5,6 +5,9 @@
 - Version: 1.0-draft
 - Date: 2026-11-07
 
+## Product scope alignment
+Karolens supports all karoseri types from launch. These flows use the same project lifecycle; body-type variation is handled by product profiles and versioned templates, with a generic/custom path for any type that has no prebuilt template. A pilot segment is a GTM choice, not a product restriction.
+
 ## 1. Navigation model
 Main navigation: Dashboard, Customers, Projects, Planning & Materials, Engineering, Compliance, Quality, Billing, Reports, Documents/Knowledge, Settings. Role-based visibility is convenience only; backend authorization is authoritative.
 
