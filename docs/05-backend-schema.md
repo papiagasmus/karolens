@@ -6,6 +6,9 @@
 - Date: 2026-11-07
 - Logical schema proposal only; not a migration.
 
+## Product scope alignment
+The data model must support all karoseri types from launch. Product types are extensible reference/configuration data (including tenant-defined custom types), never a closed enum. Every type can use a prebuilt or generic/custom profile and participate in the common project lifecycle.
+
 ## 1. Conventions
 PostgreSQL; UUID primary keys; `timestamptz`; `numeric` for monetary/quantity precision; ISO currency (IDR initially). Tenant-owned rows include `organization_id`. Store original bytes in private object storage; DB contains metadata/lineage/permissions. Preserve contract, approval and audit history.
 
