@@ -5,6 +5,9 @@
 - Version: 1.0-draft
 - Date: 2026-11-07
 
+## Product scope alignment
+Karolens supports all karoseri types from launch. These flows use the same project lifecycle; body-type variation is handled by product profiles and versioned templates, with a generic/custom path for any type that has no prebuilt template. A pilot segment is a GTM choice, not a product restriction.
+
 ## 1. Navigation model
 Main navigation: Dashboard, Customers, Projects, Planning & Materials, Engineering, Compliance, Quality, Billing, Reports, Documents/Knowledge, Settings. Role-based visibility is convenience only; backend authorization is authoritative.
 
@@ -14,7 +17,8 @@ Main navigation: Dashboard, Customers, Projects, Planning & Materials, Engineeri
 3. Invite members and assign tenant-scoped roles.
 4. Configure project numbering, IDR currency, document categories, approval matrix and notification preferences.
 5. Configure company compliance profile and applicability owner.
-6. Dashboard empty state guides first project.
+6. Configure or review the product-type catalogue and optional templates for specifications, BOM, production routes, QC and compliance; platform-provided and tenant-defined types are both available.
+7. Dashboard empty state guides first project.
 
 ## 3. Customer-to-project flow
 1. Create customer/contact.
@@ -22,7 +26,9 @@ Main navigation: Dashboard, Customers, Projects, Planning & Materials, Engineeri
 3. Upload request documents/drawings/contract draft.
 4. Create project after order acceptance; link quote/order reference and owner.
 5. Create vehicle/unit records (VIN/chassis/engine identifiers only where relevant and authorized).
-6. Link contract, obligations, payment milestones and acceptance criteria.
+6. Assign a product type to the project or each relevant unit from the extensible catalogue; select a ready-made, tenant-configured, or generic/custom profile. A missing prebuilt template never blocks the flow.
+7. Capture product-specific configuration using the selected template (or custom fields), then link the approved profile to specification/BOM/production/QC/compliance records.
+8. Link contract, obligations, payment milestones and acceptance criteria.
 
 ## 4. Document knowledge flow
 1. Authorized user uploads file into project workspace.
@@ -102,3 +108,13 @@ Customer user sees only explicitly shared projects, approved reports/documents, 
 
 ## 14. Global states
 Each workflow includes loading, empty, success, validation error, permission denied, conflict/stale version, processing, retryable failure, terminal failure, and queued/offline action where supported. Do not show success before backend confirmation.
+
+## 15. Product type and template management
+1. Organization admins browse the extensible product-type catalogue; entries may be platform-provided or tenant-defined. The list is not a closed set of body types.
+2. Admins can create a custom type/family when the required product is not listed, without requesting a code release.
+3. For each type, admins can configure and version specification fields, BOM templates, production routes/operations, QC checklists, compliance applicability, and release evidence templates.
+4. Templates have draft/review/approved/retired states and retain version history. Only authorized users can approve or retire templates.
+5. When a project/unit is created, the user selects the product type and chooses an applicable template version or generic/custom profile. Mixed types may exist within one project.
+6. The project stores a snapshot of the chosen type, configuration, and template versions. Template updates affect new assignments by default; existing approved project baselines change only through an explicit revision/impact approval.
+7. During the project lifecycle, users can add custom fields or request a controlled template revision without changing the common project lifecycle.
+8. Portfolio and project views consistently identify product type while preserving the same navigation and operational states across all types.

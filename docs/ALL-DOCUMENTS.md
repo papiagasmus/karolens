@@ -9,7 +9,7 @@
 - Status: Draft for review; not implementation approval
 
 ## 1. Product vision
-Karolens is a project operating system for Indonesian vehicle-body manufacturers (karoseri). It connects customer requirements, technical knowledge, contract obligations, material planning, production, regulatory evidence, customer communications, billing, delivery, and warranty in one traceable project record.
+Karolens is a project operating system for Indonesian vehicle-body manufacturers (karoseri), designed to support **all karoseri types from launch**. It connects customer requirements, technical knowledge, contract obligations, material planning, production, regulatory evidence, customer communications, billing, delivery, and warranty in one traceable project record. One universal platform serves conventional, specialized, and customer-defined body types; differences are handled through versioned product configurations and templates, not separate applications.
 
 **Positioning:** The Karoseri Project & Compliance Operating System.  
 **Value promise:** From customer specification to a compliant, profitable vehicle delivery.
@@ -20,7 +20,7 @@ Karolens is a project operating system for Indonesian vehicle-body manufacturers
 - Pricing unit: customer company/workspace, not per user, unless changed in a future pricing decision.
 
 ## 3. Target users and jobs
-Primary customer: Indonesian karoseri companies, initially SMEs/medium-size operators where coordination is fragmented across spreadsheets, paper, chat, and separate systems.
+Primary customer: Indonesian karoseri companies of different sizes and product specializations, initially prioritizing operators where coordination is fragmented across spreadsheets, paper, chat, and separate systems. The customer segment approached first is a go-to-market choice only; it does not restrict product eligibility or supported body types.
 
 Roles: owner/director, sales/admin, project manager, engineering, PPIC/planner, purchasing, warehouse, production supervisor, QC/inspection, compliance/document control, finance/AR, and customer viewer.
 
@@ -34,12 +34,24 @@ Jobs to be done:
 
 ## 4. Product principles
 - One project, one source of truth.
+- All karoseri types are within launch product scope; there is no body-type exclusion list.
+- A shared lifecycle handles common work; versioned configurations/templates handle product-specific specifications, BOMs, production routes, inspections, and applicable requirements.
+- A new or uncommon body type must remain manageable through a custom product profile even when no prebuilt template exists.
+- Pilot and GTM prioritization must never be used as a product-scope restriction.
 - Evidence before status: status changes require attributable records.
 - Human approval for technical baselines, contractual interpretation, legal/compliance sign-off, and customer-facing reports.
 - Distinguish law/regulation, OEM requirements, customer contract clauses, and internal SOP.
 - Do not claim to issue government approvals or replace Kemenhub portals.
 - Mobile-first shop-floor experience; full desktop capability for planning, finance, and document control.
 - Tenant isolation by company; auditability by default.
+
+### Universal product coverage
+Karolens supports, from launch, all types of karoseri products and customer-defined variants. Examples include dump bodies, cargo/box bodies, wingbox, tankers, mixers, trailers, buses, arm-roll and hook-lift bodies, crane trucks, ambulances, fire/rescue vehicles, and other special-purpose builds. This list is illustrative, not a closed enum or eligibility list.
+
+Every type uses the same core project lifecycle. Product-specific differences are represented through configurable and versioned product profiles and templates for specification fields, BOM structures, production routes/operations, QC inspections, compliance applicability, and release evidence. If a ready-made template is unavailable, users can start from a generic/custom profile and complete the project without waiting for a code change. Template depth may improve over time; product-type support itself is not deferred.
+
+### Scope versus go-to-market
+The product scope is all karoseri types. The first sales segment, pilot customer, and reference project are selected solely to sequence customer acquisition and validate workflows. They do not determine which product types Karolens can support.
 
 ## 5. Core product domains
 1. Commercial & Project Management.
@@ -85,8 +97,10 @@ Reports: periodic progress, schedule/forecast, blockers, approved photos, milest
 Billing supports commercial invoices and milestone receivables. Distinguish commercial invoice from tax invoice (Faktur Pajak). E-tax integration is not MVP. Support partial payments, allocations, overdue tracking, payment evidence, and audit history.
 
 ## 11. MVP scope
-MVP demonstrates the connected workflow on one selected karoseri subsegment and one representative project template:
+MVP supports the connected workflow for **all karoseri types from launch**. The release must not require a company or project to belong to one selected subsegment. Each type can be handled with a prebuilt template, a tenant-configured template, or a generic/custom configuration:
 - company workspace, users, roles, customers, projects and units;
+- extensible product-type catalogue, tenant-defined/custom types, and versioned templates for specifications, BOMs, production routes, QC and compliance;
+- project/unit product profiles with a durable snapshot of the selected type and template versions;
 - project document upload/version/metadata and human-verified extraction;
 - contract clause capture and milestone obligation register;
 - specification baseline and controlled revision/change request;
@@ -104,10 +118,11 @@ Out of initial MVP: full accounting/GL, payroll, automatic legal judgement, dire
 Security: tenant isolation, least privilege, RLS on exposed tables, private file buckets, signed access, audit trails, secure secrets. Reliability: backups/recovery plan, idempotent background processing, observable jobs. Performance: mobile-usable common screens; pagination and async document processing. Accessibility: readable contrast, keyboard operation on desktop, clear status semantics. Data portability: exports of project data and documents with metadata.
 
 ## 13. Success metrics
-Activation: first customer/project created, first file uploaded and verified, first obligation/schedule established. Workflow: projects with approved baseline, BOM completeness, material shortage visibility, milestone reporting cadence, inspection evidence completeness, overdue receivables visibility. Outcomes: on-time delivery trend, rework trend, estimate-vs-actual variance, collection delay, time spent preparing customer reports. Do not claim outcome improvements until measured with real product data.
+Activation: first customer/project created for any supported or custom body type, first file uploaded and verified, first obligation/schedule established. Track coverage by product type and template/custom-profile usage. Workflow: projects with approved baseline, BOM completeness, material shortage visibility, milestone reporting cadence, inspection evidence completeness, overdue receivables visibility. Outcomes: on-time delivery trend, rework trend, estimate-vs-actual variance, collection delay, time spent preparing customer reports. Do not claim outcome improvements until measured with real product data.
 
 ## 14. Risks and assumptions
-- Karoseri workflows vary by body type, OEM, customer, and project complexity.
+- Karoseri workflows vary by body type, OEM, customer, and project complexity; the product must represent these differences through configurable, versioned profiles/templates rather than hard-coded single-type assumptions.
+- Some product types may initially use generic/custom templates; absence of a prebuilt template must not block onboarding, project creation, or the common project lifecycle.
 - Existing karoseri ERP, Odoo/custom ERP, and OEM PDI mean generic ERP/QC is not enough differentiation.
 - Rp1.120.000 price and Rp1m net economics remain hypotheses, not proven willingness to pay.
 - Legal requirements change and depend on vehicle category, company scale/risk, process and location.
@@ -115,7 +130,8 @@ Activation: first customer/project created, first file uploaded and verified, fi
 - Customer willingness to centralize contracts and drawings depends on trust, privacy, and usability.
 
 ## 15. PRD approval criteria
-- First target subsegment and representative workflow selected.
+- First GTM/pilot segment and representative workflows selected for acquisition sequencing only; all karoseri types remain in launch scope.
+- Universal product-type configuration and custom-type fallback approved and validated across materially different body families.
 - MVP boundaries approved.
 - Roles and critical approval matrix agreed.
 - Legal requirement source registry owner and update cadence assigned.
@@ -140,7 +156,22 @@ Activation: first customer/project created, first file uploaded and verified, fi
 - AI operations are asynchronous, metered, auditable, and provider-agnostic behind an adapter.
 - Avoid vendor lock-in in file metadata, AI job definitions, and extraction results.
 
-## 2. Proposed stack (validate after repo inspection)
+## 2. Universal product-type configuration
+The architecture MUST support all karoseri types from launch. Product type is configuration/reference data, not a closed application enum and not a code branch that selects a separate application workflow.
+
+Requirements:
+- Maintain an extensible product-type catalogue with platform-provided entries and tenant-defined/custom entries. Examples are seed data, never an exhaustive allow-list.
+- Support reusable, versioned templates for specification fields/forms, BOM structures, production routes/operations, QC/inspection, compliance applicability, and release evidence.
+- Template definitions include typed fields, labels, units, required/optional rules, validation constraints, option sets, conditional visibility, and ordering. Validate configuration against a controlled schema; do not execute arbitrary tenant-supplied code.
+- Allow a project or individual unit to select a product type and assign the relevant template versions. Support mixed product types within one customer/project when the order contains different units.
+- Snapshot the selected product profile and template versions on the project/unit. Later template edits must not silently mutate approved specifications, BOMs, production history, or compliance evidence.
+- Permit a generic/custom profile when no prebuilt template exists. A missing template must never block quoting, project creation, the common lifecycle, or manual capture of type-specific data.
+- Keep shared workflow states and authorization consistent across product types. Product-specific steps are configurable additions to the shared lifecycle, not separate applications.
+- Record template source, version, effective period, author/approver, and change history. Provide an impact/revision workflow when a new template version is adopted by an active project.
+
+The catalogue and templates must be tenant-safe. Platform templates are read-only to tenants; tenant templates are scoped to their organization. The absence of a preconfigured body type is handled with a custom profile, not by changing application code.
+
+## 3. Proposed stack (validate after repo inspection)
 - Frontend: TypeScript + React; choose Vite SPA/PWA or Next.js only after verifying requirements. Prefer a lean PWA if no SSR requirement exists.
 - UI: Tailwind CSS and accessible component primitives; responsive/mobile-first.
 - Data access: typed API client and query cache; forms with runtime schema validation.
@@ -148,19 +179,19 @@ Activation: first customer/project created, first file uploaded and verified, fi
 - Hosting: Cloudflare Workers with Static Assets for a new static/PWA app. If Next.js is selected, follow current Cloudflare-supported Next.js deployment approach; do not assume legacy adapter compatibility.
 - CI: GitHub Actions or currently available CI; lint, typecheck, unit tests, migration checks, build and security checks.
 
-## 3. Environments
+## 4. Environments
 - Local: local frontend and Supabase CLI stack or isolated dev project.
 - Development: Supabase project `karolens` exists; confirm intended environment and secrets before migrations.
 - Preview: isolated configuration; avoid production customer data.
 - Production: separate credentials/environment, deployment approval, backups and alerting.
 
-## 4. Identity and authorization
+## 5. Identity and authorization
 Roles are tenant-scoped: owner/admin, management, sales, project manager, engineering, PPIC, procurement, warehouse, production, QC, compliance, finance, and customer viewer. Authorization derives from trusted membership records/app metadata, never user-editable `user_metadata`. Enforce both role and tenant membership in database/server policies. Customer portal identities receive explicit project/document scope only.
 
-## 5. Tenant isolation and RLS
+## 6. Tenant isolation and RLS
 Every tenant-owned record carries `organization_id` and relevant parent references. Enable RLS on all exposed tables. Policies verify membership in the same organization and role/action permission. `TO authenticated` alone is not authorization. Use membership table predicates and reviewed helper functions. Avoid SECURITY DEFINER unless strictly necessary with explicit grants and safe search_path. Exposed views use `security_invoker = true` where supported.
 
-## 6. File/document processing
+## 7. File/document processing
 - Private storage buckets; paths are tenant/project scoped and not guessable.
 - Validate MIME type using file signature where practical, extension, size, upload permission, and malware scanning/quarantine strategy.
 - Store checksum, original filename, storage key, MIME, byte count, version, classification, retention and uploader.
@@ -169,27 +200,28 @@ Every tenant-owned record carries `organization_id` and relevant parent referenc
 - Bounded retries, idempotency keys, provider/model/version, usage/cost, status and failure category.
 - Native CAD parsing excluded until parser and acceptance tests selected.
 
-## 7. AI service boundary
+## 8. AI service boundary
 Provider interface for text extraction, image understanding, structured extraction and question answering. Require structured schemas and source references. Uploaded file contents are untrusted data, never instructions. Prevent prompt injection from triggering tools or cross-project disclosure. Authorize tenant/project before retrieval; never mix tenant indexes. Review provider retention/data terms before use.
 
 AI output labels: draft/candidate, never approved. Human actions are recorded with actor/time/reason. Confidence is not approval. Critical facts (dimensions, weights, material specs, prices, deadlines, legal obligations) require explicit confirmation.
 
-## 8. Data integrity and workflow
+## 9. Data integrity and workflow
 - Postgres transactions for multi-row state transitions.
 - Explicit workflow states and guarded transitions.
 - Append-only audit events for approvals, changes, status, payment allocation, release and document lineage.
 - Optimistic concurrency/version checks for specifications, contracts, documents and BOM.
-- Approved baselines are never overwritten; create revisions and change records.
+- Approved baselines and adopted template snapshots are never overwritten; create revisions and change records.
+- Enforce referential integrity between project/unit product profiles, template versions, specification revisions, BOM revisions, operations and inspection records.
 - Idempotent background jobs for extraction, reminders, report generation and integrations.
 
-## 9. Integration boundaries
+## 10. Integration boundaries
 - Email notifications: provider selected later; queue sends and record delivery outcomes.
 - WhatsApp: later phase with approved provider/API and consent/opt-out handling.
 - Government Kemenhub portals: evidence preparation/tracking first; integrate only if authorized stable API exists and terms permit.
 - OEM checklists: configurable requirement sets and manual evidence capture before partner integrations.
 - Tax: commercial billing first; Faktur Pajak/e-tax integration later after provider and legal review.
 
-## 10. Security and privacy
+## 11. Security and privacy
 - TLS in transit; managed encryption at rest; secrets in server secret manager/environment bindings.
 - Never expose Supabase service-role/secret key or Cloudflare API token to browser.
 - Use publishable Supabase key in client; privileged operations server-side.
@@ -199,19 +231,19 @@ AI output labels: draft/candidate, never approved. Human actions are recorded wi
 - File safety: malware scanning/quarantine and safe preview/download policy.
 - Backup/restore and incident response documented before production.
 
-## 11. Observability
+## 12. Observability
 Structured logs with tenant-safe identifiers (no document content/secrets), request/job IDs, error categories, latency, usage/cost. Metrics: queue depth/age, extraction success, failed jobs, storage use, AI spend, auth failures, API latency, email delivery, billing reconciliation. Alert on queue stalls, repeat failures, budget thresholds, suspicious access and backup failures.
 
-## 12. Performance and scale
+## 13. Performance and scale
 Start with indexed Postgres relations and pagination. Use full-text/pgvector only after retrieval benchmarks justify; keep vector filters tenant/project scoped. Avoid separate search infrastructure until query performance/retrieval quality show need. Process large files asynchronously; store chunks separately from originals.
 
-## 13. Testing strategy
-Unit tests for calculations/state transitions; integration tests for RLS/membership/file access; API contract tests; adversarial cross-tenant and prompt-injection tests; E2E full lifecycle; clean DB migration tests; backup/restore exercise; mobile browser checks. Use synthetic/authorized fixtures only.
+## 14. Testing strategy
+Unit tests for calculations/state transitions; integration tests for RLS/membership/file access; API contract tests; adversarial cross-tenant and prompt-injection tests; E2E full lifecycle; clean DB migration tests; backup/restore exercise; mobile browser checks. Use synthetic/authorized fixtures only. Product-configuration tests must cover materially different body families (for example dump body, tanker, bus/trailer or special-purpose) plus a tenant-defined custom type, including template versioning, mixed types in one project, and preservation of approved project snapshots. Adding a product type or template must not require a new code path for the common lifecycle.
 
-## 14. Deployment/release
+## 15. Deployment/release
 Immutable artifacts; per-environment secrets. Preview then staging then production. Schema changes migration-managed and backward-compatible (expand/contract). Version deployments; rollback code independently from data migrations and document forward-fix strategy.
 
-## 15. Open technical decisions
+## 16. Open technical decisions
 - Frontend framework after repo inspection.
 - File storage: Supabase Storage vs Cloudflare R2; choose one canonical store based on access control, cost and egress.
 - Document parsing/OCR and AI provider.
@@ -229,6 +261,9 @@ Immutable artifacts; per-environment secrets. Preview then staging then producti
 - Version: 1.0-draft
 - Date: 2026-11-07
 
+## Product scope alignment
+Karolens supports all karoseri types from launch. These flows use the same project lifecycle; body-type variation is handled by product profiles and versioned templates, with a generic/custom path for any type that has no prebuilt template. A pilot segment is a GTM choice, not a product restriction.
+
 ## 1. Navigation model
 Main navigation: Dashboard, Customers, Projects, Planning & Materials, Engineering, Compliance, Quality, Billing, Reports, Documents/Knowledge, Settings. Role-based visibility is convenience only; backend authorization is authoritative.
 
@@ -238,7 +273,8 @@ Main navigation: Dashboard, Customers, Projects, Planning & Materials, Engineeri
 3. Invite members and assign tenant-scoped roles.
 4. Configure project numbering, IDR currency, document categories, approval matrix and notification preferences.
 5. Configure company compliance profile and applicability owner.
-6. Dashboard empty state guides first project.
+6. Configure or review the product-type catalogue and optional templates for specifications, BOM, production routes, QC and compliance; platform-provided and tenant-defined types are both available.
+7. Dashboard empty state guides first project.
 
 ## 3. Customer-to-project flow
 1. Create customer/contact.
@@ -246,7 +282,9 @@ Main navigation: Dashboard, Customers, Projects, Planning & Materials, Engineeri
 3. Upload request documents/drawings/contract draft.
 4. Create project after order acceptance; link quote/order reference and owner.
 5. Create vehicle/unit records (VIN/chassis/engine identifiers only where relevant and authorized).
-6. Link contract, obligations, payment milestones and acceptance criteria.
+6. Assign a product type to the project or each relevant unit from the extensible catalogue; select a ready-made, tenant-configured, or generic/custom profile. A missing prebuilt template never blocks the flow.
+7. Capture product-specific configuration using the selected template (or custom fields), then link the approved profile to specification/BOM/production/QC/compliance records.
+8. Link contract, obligations, payment milestones and acceptance criteria.
 
 ## 4. Document knowledge flow
 1. Authorized user uploads file into project workspace.
@@ -327,6 +365,16 @@ Customer user sees only explicitly shared projects, approved reports/documents, 
 ## 14. Global states
 Each workflow includes loading, empty, success, validation error, permission denied, conflict/stale version, processing, retryable failure, terminal failure, and queued/offline action where supported. Do not show success before backend confirmation.
 
+## 15. Product type and template management
+1. Organization admins browse the extensible product-type catalogue; entries may be platform-provided or tenant-defined. The list is not a closed set of body types.
+2. Admins can create a custom type/family when the required product is not listed, without requesting a code release.
+3. For each type, admins can configure and version specification fields, BOM templates, production routes/operations, QC checklists, compliance applicability, and release evidence templates.
+4. Templates have draft/review/approved/retired states and retain version history. Only authorized users can approve or retire templates.
+5. When a project/unit is created, the user selects the product type and chooses an applicable template version or generic/custom profile. Mixed types may exist within one project.
+6. The project stores a snapshot of the chosen type, configuration, and template versions. Template updates affect new assignments by default; existing approved project baselines change only through an explicit revision/impact approval.
+7. During the project lifecycle, users can add custom fields or request a controlled template revision without changing the common project lifecycle.
+8. Portfolio and project views consistently identify product type while preserving the same navigation and operational states across all types.
+
 
 ---
 
@@ -336,6 +384,9 @@ Each workflow includes loading, empty, success, validation error, permission den
 - Product: Karolens
 - Version: 1.0-draft
 - Date: 2026-11-07
+
+## Product scope alignment
+The experience must support all karoseri types from launch through one shared application and lifecycle. Product-specific UI is configuration-driven; no body type may be treated as unsupported because a prebuilt template is missing.
 
 ## 1. Design intent
 Create a confident, premium industrial operations interface: precise, legible, calm under pressure, and optimized for decisions on desktop and mobile. Avoid a generic admin-dashboard appearance and excessive decoration.
@@ -353,7 +404,7 @@ Create a confident, premium industrial operations interface: precise, legible, c
 - Typography: Jakarta Sans or equivalent legible sans-serif; define clear type scale and tabular numeric styles.
 - Palette: neutral graphite/stone foundations with restrained blue/teal primary accent; amber warning, red critical, green verified/complete. Never rely on color alone.
 - Surfaces: clean panels, subtle borders and restrained shadows. Avoid heavy glassmorphism if it harms contrast/performance.
-- Charts only when they support decisions; label units, period, provenance and drill-down.
+- Charts only when they support decisions; label units, period, provenance and drill-down. The interface must work consistently across all karoseri types, with product-specific fields and sections rendered from approved configuration rather than a single body-type-specific screen set.
 
 ## 4. Responsive behavior
 - Mobile: capture/review/approval/status update; compact top bar, project switcher, touch-friendly forms and sticky contextual actions.
@@ -380,12 +431,20 @@ Lifecycle: Draft, Active, On Hold, At Risk, Completed, Cancelled. Review: Upload
 Use subtle functional transitions for navigation, panel expansion, processing progress and state changes. Respect reduced-motion preferences. Never delay data entry or obscure state with animation.
 
 ## 10. Accessibility and content
-Target WCAG AA contrast. Visible keyboard focus, explicit labels/errors. Indonesian default UI; structure for localization. Explain abbreviations contextually.
+Target WCAG AA contrast. Visible keyboard focus, explicit labels/errors. Indonesian default UI; structure for localization. Explain abbreviations contextually. Dynamic fields must preserve accessible labels, units, required/error states, and keyboard order.
 
 ## 11. Screen inventory
-Auth/organization setup; dashboard; customers; project list/detail; project files/knowledge; document compare/review; contract/obligation register; spec editor/version compare; BOM/material availability; schedule/production; procurement; compliance library/register; unit dossier; QC/nonconformity; report composer; invoice/receivables; delivery/warranty; users/roles/settings.
+Auth/organization setup; dashboard; customers; project list/detail; project files/knowledge; document compare/review; contract/obligation register; spec editor/version compare; BOM/material availability; schedule/production; procurement; compliance library/register; unit dossier; QC/nonconformity; report composer; invoice/receivables; delivery/warranty; users/roles/settings; product-type catalogue and template management; project/unit product configuration and template selection.
 
-## 12. UX acceptance checks
+## 12. Universal product-type interaction patterns
+- Use one shared project lifecycle and navigation for every body type; never fork the application into a type-specific product.
+- Render product-specific forms from versioned field definitions, including labels, units, validation, required fields, and conditional sections. Preserve a predictable layout and clear provenance.
+- Make product type visible in project/unit headers, portfolio rows, filters, and reports; mixed-type projects must remain understandable.
+- Offer a clear generic/custom path when a type or ready-made template is missing. Do not show a dead end, disabled workflow, or message implying that the type is unsupported.
+- Template selection displays its name/version and the effect of adopting it. Existing approved project snapshots remain stable unless the user performs an authorized revision.
+- Design reusable views for specification, BOM, routing, inspection and compliance templates; avoid hard-coded assumptions about dimensions, components, operations, or number of checklist items.
+
+## 13. UX acceptance checks
 A supervisor records progress/photo on mobile; engineer compares drawing revisions and approves facts with source; manager explains blockers/forecast; finance sees due/received amounts; report approver detects confidential data; customer viewer cannot access internal records.
 
 
@@ -398,6 +457,9 @@ A supervisor records progress/photo on mobile; engineer compares drawing revisio
 - Version: 1.0-draft
 - Date: 2026-11-07
 - Logical schema proposal only; not a migration.
+
+## Product scope alignment
+The data model must support all karoseri types from launch. Product types are extensible reference/configuration data (including tenant-defined custom types), never a closed enum. Every type can use a prebuilt or generic/custom profile and participate in the common project lifecycle.
 
 ## 1. Conventions
 PostgreSQL; UUID primary keys; `timestamptz`; `numeric` for monetary/quantity precision; ISO currency (IDR initially). Tenant-owned rows include `organization_id`. Store original bytes in private object storage; DB contains metadata/lineage/permissions. Preserve contract, approval and audit history.
@@ -415,7 +477,16 @@ PostgreSQL; UUID primary keys; `timestamptz`; `numeric` for monetary/quantity pr
 - `project_milestones`: project/unit, type, planned/actual date, status, evidence.
 - `project_events`: normalized activity events.
 
-## 4. Documents and knowledge
+## 4. Product types and reusable configuration templates
+- `product_type_definitions`: extensible catalogue of karoseri types/families. `organization_id` is null only for platform-provided, read-only catalogue entries; tenant-defined/custom entries carry the owning organization. Store code, display name, family, description, active/system flags and audit metadata. Do not use a closed enum for body types.
+- `product_templates`: reusable template identity scoped to a product type and template purpose, such as specification, BOM, production route, inspection/QC, compliance applicability or release dossier. May be platform-provided or tenant-owned.
+- `product_template_versions`: immutable version records for each template. Store the validated configuration/schema as JSONB (typed fields, labels, units, constraints, options, conditional visibility, sequence, and references to controlled workflow items), version, status, effective dates, author/approver and change reason. Never execute arbitrary code from JSONB.
+- `project_product_profiles`: organization, project, optional project unit, product type definition, selected profile/configuration, approved configuration snapshot, revision/status and approval metadata. Support project-level defaults and unit-level overrides; unit-level assignments allow mixed product types in one project.
+- `project_template_assignments`: product profile, purpose/template role, exact `product_template_versions` reference, and immutable assigned snapshot. Enables a project to use different versioned templates for specification, BOM, route, QC, compliance and release.
+
+The existing `projects.body_category` may remain as a human-readable compatibility/display field during migration, but it must not become an exhaustive enum or the authoritative product-type model. Product identity and versioned configuration are represented by the definitions/profiles above. Existing specification, BOM, operation, inspection and requirement records should retain the source profile/template version where relevant.
+
+## 5. Documents and knowledge
 - `project_documents`: tenant/project, category, title, current-version pointer, visibility and retention class.
 - `document_versions`: document, version number, bucket/key, filename, MIME, size, checksum, uploader/time, source metadata and superseded version.
 - `document_processing_jobs`: version, status, provider/model, idempotency key, attempts, usage/cost, error category, start/finish.
@@ -425,7 +496,7 @@ PostgreSQL; UUID primary keys; `timestamptz`; `numeric` for monetary/quantity pr
 - `document_links`: link document/version to project/unit/contract/spec/BOM/requirement/invoice.
 - `knowledge_chunks`: chunked text, source version/page/region and embedding/provider metadata; defer until retrieval benchmarks justify.
 
-## 5. Contract/change control
+## 6. Contract/change control
 - `contracts`: project, customer reference, status, current approved version.
 - `contract_versions`: version, storage source, status, effective/signed dates and checksum.
 - `contract_clauses`: version, type, text, extracted value, source location, review status.
@@ -434,10 +505,10 @@ PostgreSQL; UUID primary keys; `timestamptz`; `numeric` for monetary/quantity pr
 - `change_orders`: project, requester, reason, scope/cost/schedule impact, status.
 - `customer_approvals`: object/version, requested decision, approver, decision, timestamp, evidence.
 
-## 6. Engineering/material planning
-- `specification_revisions`: project/unit configuration, version, status, source docs, approved_by/at.
+## 7. Engineering/material planning
+- `specification_revisions`: project/unit configuration, `project_product_profile_id`, optional specification `project_template_assignment_id`, version, status, source docs, approved_by/at. The approved revision retains the exact product-profile/template snapshot used.
 - `specification_items`: revision, key, value, unit, tolerance, source fact, criticality.
-- `bom_revisions`: project/unit/spec revision, version, status, approver.
+- `bom_revisions`: project/unit/spec revision, `project_product_profile_id`, optional BOM `project_template_assignment_id`, version, status, approver. The revision retains the source template version and any approved manual overrides.
 - `bom_items`: BOM revision, material, quantity, unit, waste factor and operation note.
 - `materials`: organization catalog, code, description, unit, category, supplier preference, active.
 - `inventory_locations`: warehouse/site.
@@ -447,25 +518,25 @@ PostgreSQL; UUID primary keys; `timestamptz`; `numeric` for monetary/quantity pr
 - `purchase_orders` / `purchase_order_items`: supplier orders, manual/imported initially.
 - `goods_receipts` / `goods_receipt_items`: received quantity, inspection and lot link.
 
-## 7. Schedule and production
-- `production_operations`: project/unit, operation, sequence, dependency, work center/resource, planned/actual dates, status/progress/hours.
+## 8. Schedule and production
+- `production_operations`: project/unit, operation, sequence, dependency, work center/resource, optional production-route `project_template_assignment_id`, planned/actual dates, status/progress/hours. Instantiated operations retain the template source while allowing authorized project-specific changes.
 - `production_logs`: operation, actor, time, quantity/progress, notes and photos/doc links.
 - `production_blockers`: project/operation, category, severity, owner, open/resolve times and impact estimate.
 - `capacity_calendars`: work center/resource, date and available capacity.
 
-## 8. Regulatory and quality
+## 9. Regulatory and quality
 - `requirement_sources`: issuer, source type (regulation/OEM/contract/SOP), citation, version, publication/effective/expiry dates and review date.
-- `requirement_templates`: source, title, versioned applicability logic, vehicle/company scope and mandatory flag.
+- `requirement_templates`: source, title, optional `product_template_version_id`, versioned applicability logic, vehicle/company/product-type scope and mandatory flag. Applicability remains reviewable and can differ by OEM, customer, location and project.
 - `project_requirements`: project/unit, template/source, applicability status/rationale, owner, due date and workflow status.
 - `requirement_evidence`: requirement, document/version, evidence type, verifier/time and external reference/status.
 - `compliance_submissions`: external process, application/reference number, submitted date, status, fee metadata, due date and outcome evidence.
-- `inspection_templates` / `inspection_items`: template type/version, applicability, criteria, limits/units and criticality.
+- `inspection_templates` / `inspection_items`: product type and optional `product_template_version_id`, template type/version, applicability, criteria, limits/units and criticality. Inspections retain the exact template version used at execution.
 - `inspections`: project/unit, template, inspector, start/finish and result.
 - `inspection_results`: inspection/item, result, measured value, notes and evidence.
 - `nonconformities`: inspection/project/operation, severity, disposition, corrective action and closure.
 - `release_approvals`: unit, gate result, approver/time, exception reason and dossier version.
 
-## 9. Reports, billing, delivery and after-sales
+## 10. Reports, billing, delivery and after-sales
 - `customer_reports`: project, type, period, generated snapshot, status, approver/time.
 - `report_deliveries`: report, channel, recipient, sent time, delivery status/reference.
 - `customer_messages`: project, sender/channel/direction, body/reference and linked tasks.
@@ -479,27 +550,30 @@ PostgreSQL; UUID primary keys; `timestamptz`; `numeric` for monetary/quantity pr
 - `warranty_terms`: project/unit, duration, start trigger/date, coverage/exclusions from approved contract.
 - `warranty_cases`: unit, opened date, issue, claim status, assessment, resolution and closure.
 
-## 10. Security/audit/platform
+## 11. Security/audit/platform
 - `audit_events`: organization, actor, action, object type/id, before/after summary, reason, request ID and timestamp; append-only.
 - `notifications`: tenant, recipient, type, payload and read/sent state.
 - `background_jobs`: type, tenant/project scope, idempotency key, state, attempts, schedule and error.
 - `customer_portal_users` / `document_shares`: later phase; explicit scoped permissions, expiry/revocation.
 
-## 11. Relationships
-Organization 1:N customers/projects/members/materials. Customer 1:N projects. Project 1:N units/documents/contracts/milestones/operations/requirements/invoices/reports. Document 1:N versions; version 1:N extractions/facts. Contract 1:N versions; version 1:N clauses; clause 1:N obligations. Specification revision 1:N items/BOM revisions; BOM revision 1:N items. Unit 1:N inspections/release/delivery/warranty.
+## 12. Relationships
+Organization 1:N customers/projects/members/materials and tenant-defined product types/templates. Customer 1:N projects. Project 1:N units/documents/contracts/milestones/operations/requirements/invoices/reports and product profiles. Product profile 1:N template assignments; template 1:N immutable versions. Project product profiles may be project- or unit-scoped and can represent mixed product types within one project. Specification revisions, BOM revisions, production operations, requirement/inspection records and release dossiers retain their source product profile or template assignment/version. Document 1:N versions; version 1:N extractions/facts. Contract 1:N versions; version 1:N clauses; clause 1:N obligations. Specification revision 1:N items/BOM revisions; BOM revision 1:N items. Unit 1:N inspections/release/delivery/warranty.
 
-## 12. RLS and indexes
-Enable RLS on every exposed tenant table. Policies validate authenticated user membership in matching organization and role/action permission. Validate parent/child tenant consistency on writes. Private storage policies mirror tenant/project permissions. Index organization + common filter/sort columns, project/customer/unit IDs, status, due dates, version IDs, checksum and foreign keys. Composite uniqueness: project code per organization, version number per document, invoice number per organization, material code per organization.
+## 13. RLS and indexes
+Enable RLS on every exposed tenant table. Policies validate authenticated user membership in matching organization and role/action permission. Validate parent/child tenant consistency on writes. Private storage policies mirror tenant/project permissions. Platform catalogue/template rows (`organization_id IS NULL`) are read-only to tenant users; tenant-defined types/templates are visible only to their owning organization. Policies must not let a tenant alter global rows or read another tenant's custom definitions. Index organization + common filter/sort columns, project/customer/unit IDs, status, due dates, version IDs, checksum and foreign keys. Composite uniqueness: project code per organization, version number per document, invoice number per organization, material code per organization.
 
-## 13. Migration sequence (logical)
-1. Tenant, membership, customer, project, units.
-2. Documents, versions, jobs, extraction/facts, audit.
-3. Contracts, clauses, obligations, changes/approvals.
-4. Specifications, BOM, materials, stock, procurement.
-5. Schedule, production, blockers.
-6. Requirement source library, compliance evidence, QC/release.
-7. Reports, billing, payments, delivery, warranty.
-8. Portal sharing/integrations later.
+## 14. Migration sequence (logical)
+1. Tenant, membership and base organization security.
+2. Product-type definitions and reusable template identities/versions, with system-versus-tenant ownership and RLS tests.
+3. Customer, project and unit foundation.
+4. Project product profiles and immutable template assignments/snapshots.
+5. Documents, versions, jobs, extraction/facts and audit.
+6. Contracts, clauses, obligations, changes and approvals.
+7. Specifications, BOM, materials, stock and procurement, linked to product profiles/template versions.
+8. Schedule, production and blockers, including configurable production-route templates.
+9. Requirement source library, compliance evidence, QC and release, linked to applicable templates.
+10. Reports, billing, payments, delivery and warranty.
+11. Portal sharing/integrations later.
 
 Do not generate SQL until entity fields, constraints, RLS matrix, and indexes are reviewed.
 
@@ -514,9 +588,14 @@ Do not generate SQL until entity fields, constraints, RLS matrix, and indexes ar
 - Date: 2026-11-07
 - Coding gate: **not approved until all six documents are reviewed and baseline decisions are closed**.
 
+## Product scope invariant
+Karolens supports all karoseri types from launch. Implementation may sequence template depth and pilot acquisition, but may not defer support for a product type. A generic/custom profile must let any type use the shared project lifecycle even when a dedicated template is not yet available.
+
 ## Phase 0 — Specification approval and readiness
 - Review six documents together; map requirements across flows, UI, schema and tests.
-- Choose first karoseri subsegment and one reference project scenario.
+- Select a first GTM/pilot segment and reference customer scenario for acquisition sequencing only; this choice must not narrow product scope.
+- Approve universal launch support for all karoseri types, including an extensible catalogue and generic/custom fallback when no prebuilt template exists.
+- Validate the product model using multiple materially different body families and at least one tenant-defined custom type; include a mixed-type project scenario.
 - Inspect repository and select frontend framework/toolchain.
 - Confirm Supabase project/environment, backups, Auth, Storage and secrets handling.
 - Confirm Cloudflare account, products, domain, pricing/limits and deployment path.
@@ -527,38 +606,46 @@ Do not generate SQL until entity fields, constraints, RLS matrix, and indexes ar
 
 ## Phase 1 — Foundation
 - Repository baseline, lint/typecheck/test/build and CI.
+- Extensible product-type catalogue with platform-provided and tenant-defined/custom entries; avoid closed body-type enums.
+- Versioned template foundation for specification, BOM, production route, QC/inspection, compliance and release evidence; ownership, approval and RLS rules.
+- Generic/custom product profile that permits any karoseri type to enter the common lifecycle without a prebuilt template.
 - App shell, auth, organization setup, invitations and membership/role model.
 - Supabase migrations for tenant foundation; RLS/storage policies tested.
 - Audit events, error handling, structured logging, environment config.
-**Exit:** tenant isolation and authenticated workspace verified automatically.
+**Exit:** tenant isolation and authenticated workspace verified automatically; any karoseri type can be represented through the catalogue or custom profile, and approved template versions are tenant-scoped and versioned.
 
 ## Phase 2 — Project and document workspace
-- Customer/project/unit CRUD.
+- Customer/project/unit CRUD across all product types.
+- Assign product profiles at project or unit level, including mixed-type units within one project; snapshot selected template versions.
 - Private document storage and immutable versions.
 - Upload validation, metadata, annotations and document links.
 - Background processing job model; begin with provider-agnostic/manual extraction.
 - Candidate fact extraction and human verification/approval with source traceability.
-**Exit:** users upload supported files, review extracted facts and approve baseline while preserving source/version lineage.
+**Exit:** users create projects for any product type, assign project/unit profiles (including mixed types), upload supported files, review extracted facts and approve baselines while preserving source/template version lineage.
 
 ## Phase 3 — Contract and engineering baseline
 - Contract versions and clause register.
+- Dynamic, validated specification capture from the selected product profile/template, with manual/custom fallback.
+- BOM template selection and revision linkage to the approved product/specification baseline.
 - Obligation/milestone capture and approval.
 - Specification revision, baseline and change request.
 - BOM revision tied to approved specification.
 - Impact comparison for changes.
-**Exit:** changes leave traceable audit records; AI cannot approve.
+**Exit:** changes leave traceable audit records; specifications and BOMs can be driven by product-specific templates or custom configuration; AI cannot approve.
 
 ## Phase 4 — Materials, procurement and production
 - Material catalog, stock visibility, reservation and shortage calculation.
+- Configurable production-route/operation templates by product type; retain a shared scheduling, progress and blocker engine.
 - Purchase request and receipt workflow.
 - Operations, dependencies, capacity calendar, progress logs, blockers and delivery forecast.
-**Exit:** project owner can explain forecast from recorded blockers/events.
+**Exit:** project owner can explain forecast from recorded blockers/events; production operations can be instantiated from different product-type routes without a separate lifecycle implementation.
 
 ## Phase 5 — Compliance, quality and release
 - Versioned requirement sources and applicability profiles.
+- Bind QC, inspection, compliance and release templates to the project/unit product profile; allow justified manual/custom evidence capture.
 - Project/unit compliance register, evidence and external-process tracking.
 - Inspection templates/results, nonconformity/rework and release approval.
-**Exit:** release readiness derives from applicable evidence and authorized approvals; no false claim of government approval.
+**Exit:** release readiness derives from product-type/OEM/customer-applicable evidence and authorized approvals across all body types; no false claim of government approval.
 
 ## Phase 6 — Customer reporting and finance
 - Customer report assembly, redaction and approval.
@@ -576,6 +663,7 @@ Do not generate SQL until entity fields, constraints, RLS matrix, and indexes ar
 **Exit:** release gate passes; owner approves controlled pilot.
 
 ## Phase 8 — Post-MVP expansion
+- Deepen and expand the prebuilt template library, integrations and specialized automation based on customer evidence; this phase does not introduce support for additional body types because all types are already in launch scope.
 - Customer portal with granular sharing.
 - WhatsApp/email integrations.
 - OEM templates/partner and government portal integration only when official support is validated.
@@ -586,6 +674,8 @@ Do not generate SQL until entity fields, constraints, RLS matrix, and indexes ar
 - RLS proves cross-tenant reads/writes denied.
 - Storage tests cover upload/download/version/expiry/revocation.
 - Workflow tests cover draft/review/approve/supersede/reject.
+- Universal product tests prove the same platform can create and run projects for materially different body families and a tenant-defined custom type, including mixed product types in one project.
+- Template tests prove version immutability, explicit adoption/revision, custom fallback, and no change to an approved project when a template is updated.
 - Critical calculations (BOM, costs, balances, schedule) have deterministic tests.
 - AI extraction schema/source citation/untrusted document injection/human approval tests.
 - E2E project lifecycle tests on mobile and desktop.
@@ -595,7 +685,8 @@ Do not generate SQL until entity fields, constraints, RLS matrix, and indexes ar
 Create small issues linked to PRD requirement IDs. Use short-lived feature branches and PRs. Migrations additive and ordered. No broad direct pushes to production branch for application features. Each PR includes tests, migration impact, security considerations and UI screenshots where applicable.
 
 ## Dependencies and risks
-- First body type determines specification/BOM/regulatory templates.
+- A first GTM segment may inform the initial pilot, but it must not determine the product architecture or restrict the supported body types.
+- Template coverage will vary by maturity; generic/custom configuration must preserve full common-lifecycle support for types without prebuilt templates.
 - Parsing quality and AI cost may constrain the feature set.
 - Regulatory source maintenance needs a named owner.
 - Cloudflare product/domain configuration follows repository stack inspection.
